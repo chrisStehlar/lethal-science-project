@@ -40,6 +40,7 @@ public partial class Player : CharacterBody2D
 			Modulate = Color.FromHtml("FFFFFF");
 			isOnCooldown = false;
 		};
+		sprites.Play();
 	}
 	
 	public override void _PhysicsProcess(double delta)
