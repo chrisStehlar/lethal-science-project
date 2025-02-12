@@ -17,6 +17,8 @@ public partial class RhythmDebugUI : Control
 
 	Label and;
 
+	Label currentPhraseName;
+
 	private Label[] beatLabels;
 
 	// Called when the node enters the scene tree for the first time.
@@ -31,6 +33,8 @@ public partial class RhythmDebugUI : Control
 
 		beatLabels = new Label[] { null, beat1, beat2, beat3, beat4 };
 
+		currentPhraseName = GetNode<Label>("CurrentPhraseName");
+
 		conductor.OnBeat += Beat;
 		conductor.OnFinalBeat += ResetColors;
 	}
@@ -38,6 +42,8 @@ public partial class RhythmDebugUI : Control
 	private void Beat(float beatIndex)
 	{
 		ColorOnBeat(beatIndex);
+
+		currentPhraseName.Text = conductor.CurrentPhrase.Description;
 	}
 
 	/// <summary>
@@ -89,7 +95,7 @@ public partial class RhythmDebugUI : Control
 	/// </summary>
 	public void PressPlay()
 	{
-		conductor.Play(conductor.phrase);
+		conductor.Play();
 	}
 
 	public void PressPause()

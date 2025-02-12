@@ -20,10 +20,12 @@ public partial class Conductor : Node
 
 	// rule of thumb - dont go over 20 channels total
 
-	[Export] public Phrase intro;
-	[Export] public Phrase phrase;
-
-	private Phrase currentPhrase;
+	[Export] public Song song;
+	public Phrase CurrentPhrase => song.Phrases[currentPhraseIndex];
+	private int currentPhraseIndex = 0;
+	private int currentPhraseRepetitions = 0;
+	private bool phraseQueued = false;
+	private Phrase nextPhrase;
 
 	private bool pauseQueued = false;
 	public bool IsPlaying {get; set;} = false;
@@ -38,6 +40,7 @@ public partial class Conductor : Node
 	/// </summary>
 	[Export] public int BeatRate {get; set;} = 1;
 	private int queuedBeatRateChange = 0;
+	public event VoidEventHandler OnBeatRateChanged;
 
 	public delegate void BeatEventHandler(float beat); // beats can be decimals (1/2 beat, 1/4 beat)
 	public event BeatEventHandler OnBeat;
@@ -52,10 +55,7 @@ public partial class Conductor : Node
 	{
 		clickTrack = GetNode<MetronomePlayer>("Metronome");
 
-		currentPhrase = phrase;
-
 		OnBeat += PrintBeat;
-
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -68,7 +68,7 @@ public partial class Conductor : Node
 		}
 		else if(Input.IsActionJustPressed("P") && !IsPlaying)
 		{
-			Play(currentPhrase);
+			Play(song.Phrases[currentPhraseIndex]);
 		}
 
 		// up and down will change the beat rate - applied at end of measure
@@ -110,24 +110,41 @@ public partial class Conductor : Node
 		SetConductorParameters(entryPhrase);
 		rootChannel.Stream = entryPhrase.loop;
 
+		currentPhraseRepetitions = entryPhrase.Repetitions;
+
 		UpdateBeatRate();
 		Beat(); // start the first beat - this will play the next ones too
 
 		IsPlaying = true;
 	}
 
+	/// <summary>
+	/// Always plays from the start of the song.
+	/// </summary>
+	public void Play()
+	{
+		currentPhraseIndex = 0;
+		Play(song.Phrases[currentPhraseIndex]);
+	}
+
+	/// <summary>
+	/// Adjusts the beat timer to the new bpm. Also takes into account the BeatRate.
+	/// BeatRate can split whole notes into smaller subdivisions.
+	/// </summary>
 	private void UpdateBeatRate()
 	{
 		var secondsPerBeatEvent = (60.0 / bpm) * ((double)1/BeatRate);
-		GD.Print("seconds per beat event: " + secondsPerBeatEvent);
+		if(PrintToConsoleEnabled) GD.Print("seconds per beat event: " + secondsPerBeatEvent);
 		beatTimer.WaitTime = secondsPerBeatEvent;
 		beatTimer.OneShot = true; // do not loop automatically
 		wholeBeatsThisMeasure = 1; // start on 1st beat
 		beatSubdivisions = 0;
+
+		OnBeatRateChanged?.Invoke();
 	}
 
 	/// <summary>
-	/// Stops the beat timer, but will play out any more stems until they are done with their loop.
+	/// Stops the beat timer, but will finish playing phrase until the loop is done.
 	/// </summary>
 	public void Pause()
 	{
@@ -186,11 +203,9 @@ public partial class Conductor : Node
 	/// <param name="phrase"></param>
 	private void SetConductorParameters(Phrase phrase)
 	{
-		beatsPerMeasure = phrase.loop.BeatCount;
+		beatsPerMeasure = phrase.Beats;
 		bpm = phrase.loop.Bpm;
 		key = phrase.Key;
-
-		beatTimer.WaitTime = 60.0 / bpm;
 	}
 
 	/// <summary>
@@ -209,7 +224,6 @@ public partial class Conductor : Node
 		// start of new measure logic
 		if(beat == 1)
 		{
-
 			if(queuedBeatRateChange != 0)
 			{
 				BeatRate += queuedBeatRateChange;
@@ -219,6 +233,15 @@ public partial class Conductor : Node
 
 			if(!pauseQueued)
 			{
+				if(phraseQueued)
+				{
+					SetConductorParameters(nextPhrase);
+					UpdateBeatRate();
+
+					rootChannel.Stream = nextPhrase.loop;
+					phraseQueued = false;
+				}
+
 				rootChannel.Play();
 			}
 		}
@@ -228,6 +251,29 @@ public partial class Conductor : Node
 		{
 			wholeBeatsThisMeasure = 1;
 			beatSubdivisions = 0;
+
+			
+
+			// handle phrase repeating or queueing the next one
+			if(currentPhraseRepetitions > 0)
+			{
+				currentPhraseRepetitions -= 1;
+			}
+			else
+			{
+				// loop back to beginning if all phrases have been played
+				if(currentPhraseIndex >= song.Phrases.Length - 1)
+				{
+					currentPhraseIndex = 0;
+				}
+				else
+				{
+					currentPhraseIndex += 1;
+				}
+
+				QueuePhrase(song.Phrases[currentPhraseIndex]);
+				currentPhraseRepetitions = nextPhrase.Repetitions;
+			}
 		}
 		// end of beat logic
 		else
@@ -242,6 +288,16 @@ public partial class Conductor : Node
 		}
 
 		beatTimer.Start();
+	}
+
+	/// <summary>
+	/// Sets a phrase to be played at the start of the next measure.
+	/// </summary>
+	/// <param name="queuedPhrase"></param>
+	private void QueuePhrase(Phrase queuedPhrase)
+	{
+		phraseQueued = true;
+		nextPhrase = queuedPhrase;
 	}
 
 	/// <summary>

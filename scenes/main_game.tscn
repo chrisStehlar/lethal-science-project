@@ -1,12 +1,9 @@
-[gd_scene load_steps=23 format=4 uid="uid://maknoij2sh4o"]
+[gd_scene load_steps=18 format=4 uid="uid://maknoij2sh4o"]
 
 [ext_resource type="Texture2D" uid="uid://cflwrk83ha6y0" path="res://assets/sprites/demo-tileset.png" id="1_0uvb2"]
 [ext_resource type="Script" path="res://assets/scripts/Player.cs" id="2_s6vgu"]
 [ext_resource type="Texture2D" uid="uid://36lod8i17k2n" path="res://assets/sprites/demo-player.png" id="3_0vpfr"]
 [ext_resource type="Script" path="res://assets/scripts/rhythm/Conductor.cs" id="4_tsv5s"]
-[ext_resource type="AudioStream" uid="uid://bjq3lnp4m5626" path="res://assets/sound-fx/counting-in.mp3" id="5_03muf"]
-[ext_resource type="Script" path="res://assets/scripts/rhythm/Phrase.cs" id="6_8sxkw"]
-[ext_resource type="AudioStream" uid="uid://dv5jy3htqohkw" path="res://assets/sound-fx/drum_stems/James Brown - Funky Drummer.mp3" id="7_sjyxo"]
 [ext_resource type="AudioStream" uid="uid://cw3tqd4c3jixc" path="res://assets/sound-fx/metronomeTick.mp3" id="8_yubpw"]
 [ext_resource type="Script" path="res://assets/scripts/rhythm/MetronomePlayer.cs" id="9_tvib1"]
 [ext_resource type="AudioStream" uid="uid://cyc67punw2gxy" path="res://assets/sound-fx/metronomeTick1.mp3" id="10_hjm76"]
@@ -107,16 +104,6 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sehyx"]
 size = Vector2(32, 32)
 
-[sub_resource type="Resource" id="Resource_1ghmw"]
-script = ExtResource("6_8sxkw")
-loop = ExtResource("5_03muf")
-Key = 0
-
-[sub_resource type="Resource" id="Resource_k65tn"]
-script = ExtResource("6_8sxkw")
-loop = ExtResource("7_sjyxo")
-Key = 0
-
 [node name="Node2D" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -153,8 +140,6 @@ one_shot = true
 [node name="Conductor" type="Node" parent="." node_paths=PackedStringArray("rootChannel")]
 script = ExtResource("4_tsv5s")
 PrintToConsoleEnabled = true
-intro = SubResource("Resource_1ghmw")
-phrase = SubResource("Resource_k65tn")
 rootChannel = NodePath("Channel_1")
 
 [node name="Metronome" type="AudioStreamPlayer" parent="Conductor"]
@@ -172,7 +157,6 @@ projectileScene = ExtResource("12_4he15")
 conductor = NodePath("../Conductor")
 projectileColor = Color(1, 1, 0, 1)
 projectileSpeed = 6
-shootingGuide = "110110110100"
 
 [node name="Sprite2D" type="Sprite2D" parent="Boss"]
 position = Vector2(0, -9)

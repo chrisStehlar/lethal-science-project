@@ -1,30 +1,50 @@
-[gd_scene load_steps=11 format=3 uid="uid://dito24bir3q1a"]
+[gd_scene load_steps=15 format=3 uid="uid://dito24bir3q1a"]
 
 [ext_resource type="Script" path="res://assets/scripts/rhythm/Conductor.cs" id="1_e2iuu"]
-[ext_resource type="AudioStream" uid="uid://dv5jy3htqohkw" path="res://assets/sound-fx/drum_stems/James Brown - Funky Drummer.mp3" id="2_adic1"]
-[ext_resource type="Script" path="res://assets/scripts/rhythm/Phrase.cs" id="2_eobf4"]
-[ext_resource type="AudioStream" uid="uid://bjq3lnp4m5626" path="res://assets/sound-fx/counting-in.mp3" id="2_fd2lt"]
+[ext_resource type="AudioStream" uid="uid://csymk0wb5lqff" path="res://assets/sound-fx/drum_stems/taiko1.mp3" id="2_cqxeh"]
 [ext_resource type="AudioStream" uid="uid://cw3tqd4c3jixc" path="res://assets/sound-fx/metronomeTick.mp3" id="2_r7u3d"]
+[ext_resource type="Script" path="res://assets/scripts/rhythm/Phrase.cs" id="3_5ljuc"]
 [ext_resource type="Script" path="res://assets/scripts/rhythm/MetronomePlayer.cs" id="3_ixf7h"]
 [ext_resource type="AudioStream" uid="uid://cyc67punw2gxy" path="res://assets/sound-fx/metronomeTick1.mp3" id="4_6lgvk"]
+[ext_resource type="AudioStream" uid="uid://dv5jy3htqohkw" path="res://assets/sound-fx/drum_stems/James Brown - Funky Drummer.mp3" id="4_wxy8e"]
+[ext_resource type="AudioStream" uid="uid://b7xcah37w5wyp" path="res://assets/sound-fx/drum_stems/taiko2.mp3" id="5_84gg6"]
+[ext_resource type="Script" path="res://assets/scripts/rhythm/Song.cs" id="6_6tc1y"]
 [ext_resource type="Script" path="res://assets/scripts/rhythm/RhythmDebugUI.cs" id="8_v0ks8"]
 
-[sub_resource type="Resource" id="Resource_jsqs2"]
-script = ExtResource("2_eobf4")
-loop = ExtResource("2_fd2lt")
+[sub_resource type="Resource" id="Resource_m28l1"]
+script = ExtResource("3_5ljuc")
+Description = "taiko low intensity"
+loop = ExtResource("2_cqxeh")
 Key = 0
+Repetitions = 0
+Beats = 4
 
-[sub_resource type="Resource" id="Resource_utnuj"]
-script = ExtResource("2_eobf4")
-loop = ExtResource("2_adic1")
+[sub_resource type="Resource" id="Resource_dgn0d"]
+script = ExtResource("3_5ljuc")
+Description = "funky drummer"
+loop = ExtResource("4_wxy8e")
 Key = 0
+Repetitions = 1
+Beats = 4
+
+[sub_resource type="Resource" id="Resource_mnl16"]
+script = ExtResource("3_5ljuc")
+Description = "taiko low intensity"
+loop = ExtResource("5_84gg6")
+Key = 0
+Repetitions = 0
+Beats = 4
+
+[sub_resource type="Resource" id="Resource_hs8ly"]
+script = ExtResource("6_6tc1y")
+Phrases = Array[Object]([SubResource("Resource_m28l1"), SubResource("Resource_dgn0d"), SubResource("Resource_mnl16")])
 
 [node name="Root" type="Node"]
 
 [node name="Conductor" type="Node" parent="." node_paths=PackedStringArray("rootChannel")]
 script = ExtResource("1_e2iuu")
-intro = SubResource("Resource_jsqs2")
-phrase = SubResource("Resource_utnuj")
+PrintToConsoleEnabled = true
+song = SubResource("Resource_hs8ly")
 rootChannel = NodePath("Channel_1")
 
 [node name="Metronome" type="AudioStreamPlayer" parent="Conductor"]
@@ -139,6 +159,19 @@ offset_top = -0.184021
 offset_right = 0.071991
 offset_bottom = -0.160004
 text = "Pause"
+
+[node name="CurrentPhraseName" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.183
+anchor_top = 0.137
+anchor_right = 0.425
+anchor_bottom = 0.22
+offset_left = -0.256012
+offset_top = 0.0159912
+offset_right = -0.600006
+offset_bottom = 1.95999
+text = "phrase name"
 
 [connection signal="pressed" from="CanvasLayer/Control/PlayButton" to="CanvasLayer/Control" method="PressPlay"]
 [connection signal="pressed" from="CanvasLayer/Control/PauseButton" to="CanvasLayer/Control" method="PressPause"]
