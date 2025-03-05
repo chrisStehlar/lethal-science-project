@@ -18,14 +18,21 @@ public partial class Enemy : StaticBody2D
 	int guideLength;
 	int currentMeasure = 0;
 
+	AnimatedSprite2D sprite;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		calmMeter.MaxValue = calmMax;
-		calmMeter.TintOver = projectileColor;
+		sprite = GetChild<AnimatedSprite2D>(0);
+		if (calmMeter != null)
+		{
+			calmMeter.MaxValue = calmMax;
+			calmMeter.TintOver = projectileColor;
+		}
 
 		conductor.OnBeat += Beat;
 		ResetGuide();
+		sprite.AnimationFinished += () => { sprite.Animation = "idle"; };
 	}
 
 	/// <summary>
@@ -54,6 +61,8 @@ public partial class Enemy : StaticBody2D
 		projectile.Speed = projectileSpeed;
 		projectile.Orientation = GD.Randf() * 1.4f - 0.7f;
 		AddChild(projectile);
+		sprite.Animation = "swing";
+		sprite.Play();
 	}
 
 	public void ResetGuide()
@@ -71,7 +80,7 @@ public partial class Enemy : StaticBody2D
 		return index;
 	}
 
-	public void Pacify()
+	public virtual void Pacify()
 	{
 		calmCurrent += 5;
 		UpdateCalmness();

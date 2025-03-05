@@ -1,4 +1,4 @@
-[gd_scene load_steps=135 format=4 uid="uid://maknoij2sh4o"]
+[gd_scene load_steps=144 format=4 uid="uid://maknoij2sh4o"]
 
 [ext_resource type="Texture2D" uid="uid://cflwrk83ha6y0" path="res://assets/sprites/demo-tileset.png" id="1_0uvb2"]
 [ext_resource type="Script" uid="uid://b1vgmgx18rg2p" path="res://assets/scripts/Player.cs" id="2_s6vgu"]
@@ -856,6 +856,75 @@ Beats = 64
 script = ExtResource("9_gnkye")
 Phrases = Array[Object]([SubResource("Resource_536nl")])
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_rr87q"]
+atlas = ExtResource("13_ymsut")
+region = Rect2(0, 0, 223, 111)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3a3x"]
+atlas = ExtResource("13_ymsut")
+region = Rect2(1338, 0, 223, 111)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sgocm"]
+atlas = ExtResource("13_ymsut")
+region = Rect2(1115, 0, 223, 111)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pk1le"]
+atlas = ExtResource("13_ymsut")
+region = Rect2(892, 0, 223, 111)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1al3e"]
+atlas = ExtResource("13_ymsut")
+region = Rect2(669, 0, 223, 111)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sh8gf"]
+atlas = ExtResource("13_ymsut")
+region = Rect2(446, 0, 223, 111)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4h0lf"]
+atlas = ExtResource("13_ymsut")
+region = Rect2(223, 0, 223, 111)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ikos"]
+atlas = ExtResource("13_ymsut")
+region = Rect2(0, 0, 223, 111)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pjtuq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rr87q")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3a3x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sgocm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pk1le")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1al3e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sh8gf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4h0lf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ikos")
+}],
+"loop": false,
+"name": &"swing",
+"speed": 10.0
+}]
+
 [node name="Node2D" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -903,11 +972,13 @@ conductor = NodePath("../Conductor")
 calmMeter = NodePath("../UI Elements/BossCalmness")
 projectileColor = Color(1, 1, 0, 1)
 projectileSpeed = 6
-shootingGuide = "0111111111111110"
+shootingGuide = "1000"
 
-[node name="Sprite2D" type="Sprite2D" parent="Boss"]
-position = Vector2(0, -9)
-texture = ExtResource("13_ymsut")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Boss"]
+sprite_frames = SubResource("SpriteFrames_pjtuq")
+animation = &"swing"
+frame = 6
+frame_progress = 1.0
 
 [node name="UI Elements" type="Node" parent="."]
 
