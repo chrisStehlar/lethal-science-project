@@ -1,17 +1,45 @@
-[gd_scene load_steps=6 format=3 uid="uid://dt4bipq1pyima"]
+[gd_scene load_steps=12 format=3 uid="uid://dt4bipq1pyima"]
 
-[ext_resource type="Script" path="res://assets/scripts/rhythm/Conductor.cs" id="1_e2iuu"]
+[ext_resource type="Script" uid="uid://duuljskoljfdc" path="res://assets/scripts/rhythm/Conductor.cs" id="1_e2iuu"]
 [ext_resource type="AudioStream" uid="uid://cw3tqd4c3jixc" path="res://assets/sound-fx/metronomeTick.mp3" id="2_r7u3d"]
-[ext_resource type="Script" path="res://assets/scripts/rhythm/MetronomePlayer.cs" id="3_ixf7h"]
+[ext_resource type="Script" uid="uid://dtmnsqoi88iqw" path="res://assets/scripts/rhythm/MetronomePlayer.cs" id="3_ixf7h"]
 [ext_resource type="AudioStream" uid="uid://cyc67punw2gxy" path="res://assets/sound-fx/metronomeTick1.mp3" id="4_6lgvk"]
-[ext_resource type="Script" path="res://assets/scripts/rhythm/RhythmDebugUI.cs" id="8_v0ks8"]
+[ext_resource type="AudioStream" uid="uid://ndmjqqngssox" path="res://assets/songs/freakbattle/mus_freakbattle_initial-1.ogg" id="5_r5vlw"]
+[ext_resource type="AudioStream" uid="uid://cdo8r56uqime7" path="res://assets/songs/freakbattle/mus_freakbattle_initial-2.ogg" id="6_lu2u7"]
+[ext_resource type="AudioStream" uid="uid://cpvh32ogubpmg" path="res://assets/songs/freakbattle/mus_freakbattle_loop-1.ogg" id="7_yrw4g"]
+[ext_resource type="AudioStream" uid="uid://ddx33d3eamosv" path="res://assets/songs/freakbattle/mus_freakbattle_loop-2.ogg" id="8_o7u53"]
+[ext_resource type="Script" uid="uid://4l2algdygoa6" path="res://assets/scripts/rhythm/RhythmDebugUI.cs" id="8_v0ks8"]
+[ext_resource type="AudioStream" uid="uid://dbleypvwrswa0" path="res://assets/songs/freakbattle/mus_freakbattle_loop-3.ogg" id="9_5lvre"]
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_eatxw"]
+clip_count = 5
+clip_0/name = &"Intro 1"
+clip_0/stream = ExtResource("5_r5vlw")
+clip_0/auto_advance = 1
+clip_0/next_clip = 1
+clip_1/name = &"Intro 2"
+clip_1/stream = ExtResource("6_lu2u7")
+clip_1/auto_advance = 1
+clip_1/next_clip = 3
+clip_2/name = &"Loop 1"
+clip_2/stream = ExtResource("7_yrw4g")
+clip_2/auto_advance = 1
+clip_2/next_clip = 3
+clip_3/name = &"Loop 2"
+clip_3/stream = ExtResource("8_o7u53")
+clip_3/auto_advance = 1
+clip_3/next_clip = 4
+clip_4/name = &"Loop 3"
+clip_4/stream = ExtResource("9_5lvre")
+clip_4/auto_advance = 1
+clip_4/next_clip = 2
 
 [node name="Root" type="Node"]
 
 [node name="Conductor" type="Node" parent="." node_paths=PackedStringArray("rootChannel")]
 script = ExtResource("1_e2iuu")
 PrintToConsoleEnabled = true
-rootChannel = NodePath("Channel_1")
+rootChannel = NodePath("AudioStreamPlayer2")
 
 [node name="Metronome" type="AudioStreamPlayer" parent="Conductor"]
 stream = ExtResource("2_r7u3d")
@@ -20,6 +48,10 @@ tickSound = ExtResource("2_r7u3d")
 accentedTickSound = ExtResource("4_6lgvk")
 
 [node name="Channel_1" type="AudioStreamPlayer" parent="Conductor"]
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="Conductor"]
+stream = SubResource("AudioStreamInteractive_eatxw")
+volume_db = -10.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

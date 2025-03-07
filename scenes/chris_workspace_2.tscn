@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://hpb4ot3hk2y6"]
+
+[ext_resource type="Script" uid="uid://ciimskytra6af" path="res://assets/scripts/rhythm/InteractiveAudioTester.cs" id="3_i1eok"]
+[ext_resource type="AudioStream" uid="uid://ndmjqqngssox" path="res://assets/songs/freakbattle/mus_freakbattle_initial-1.ogg" id="3_y4jve"]
+[ext_resource type="AudioStream" uid="uid://cdo8r56uqime7" path="res://assets/songs/freakbattle/mus_freakbattle_initial-2.ogg" id="4_8woo6"]
+[ext_resource type="AudioStream" uid="uid://cpvh32ogubpmg" path="res://assets/songs/freakbattle/mus_freakbattle_loop-1.ogg" id="5_v0a3f"]
+[ext_resource type="AudioStream" uid="uid://ddx33d3eamosv" path="res://assets/songs/freakbattle/mus_freakbattle_loop-2.ogg" id="6_y52rm"]
+[ext_resource type="AudioStream" uid="uid://dbleypvwrswa0" path="res://assets/songs/freakbattle/mus_freakbattle_loop-3.ogg" id="7_yot23"]
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_y6hlp"]
+clip_count = 5
+clip_0/name = &"Intro 1"
+clip_0/stream = ExtResource("3_y4jve")
+clip_0/auto_advance = 1
+clip_0/next_clip = 1
+clip_1/name = &"Intro 2"
+clip_1/stream = ExtResource("4_8woo6")
+clip_1/auto_advance = 1
+clip_1/next_clip = 3
+clip_2/name = &"Loop 1"
+clip_2/stream = ExtResource("5_v0a3f")
+clip_2/auto_advance = 1
+clip_2/next_clip = 3
+clip_3/name = &"Loop 2"
+clip_3/stream = ExtResource("6_y52rm")
+clip_3/auto_advance = 1
+clip_3/next_clip = 4
+clip_4/name = &"Loop 3"
+clip_4/stream = ExtResource("7_yot23")
+clip_4/auto_advance = 1
+clip_4/next_clip = 2
+
+[node name="ChrisWorkspace2" type="Node"]
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." node_paths=PackedStringArray("player", "label")]
+stream = SubResource("AudioStreamInteractive_y6hlp")
+volume_db = -10.0
+autoplay = true
+script = ExtResource("3_i1eok")
+player = NodePath(".")
+label = NodePath("../Control/Label")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 134.0
+offset_top = 160.0
+offset_right = 244.0
+offset_bottom = 183.0
+text = "current track: "

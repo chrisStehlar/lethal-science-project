@@ -1,4 +1,4 @@
-[gd_scene load_steps=145 format=4 uid="uid://maknoij2sh4o"]
+[gd_scene load_steps=140 format=4 uid="uid://maknoij2sh4o"]
 
 [ext_resource type="Texture2D" uid="uid://cflwrk83ha6y0" path="res://assets/sprites/demo-tileset.png" id="1_0uvb2"]
 [ext_resource type="Script" uid="uid://dyfaukqodcx8m" path="res://assets/scripts/GameManager.cs" id="1_dp0eu"]
@@ -11,16 +11,13 @@
 [ext_resource type="Texture2D" uid="uid://c6mbko3udwpq0" path="res://assets/sprites/player/player_absorb_idle_r.png" id="5_2mge4"]
 [ext_resource type="Texture2D" uid="uid://gre1sdnst3yx" path="res://assets/sprites/player/player_idle_u.png" id="5_uyina"]
 [ext_resource type="Texture2D" uid="uid://crlys0wcn3yqd" path="res://assets/sprites/player/player_absorb_idle_u.png" id="6_3qiid"]
-[ext_resource type="Script" uid="uid://cxnrnx8a4w3mv" path="res://assets/scripts/rhythm/Phrase.cs" id="6_8sxkw"]
 [ext_resource type="Texture2D" uid="uid://t6djvtdcbcpi" path="res://assets/sprites/player/player_walk_d.png" id="6_tchsi"]
 [ext_resource type="Texture2D" uid="uid://b4elnhu274w0v" path="res://assets/sprites/player/player_walk_s.png" id="7_gb008"]
-[ext_resource type="AudioStream" uid="uid://cpvh32ogubpmg" path="res://assets/songs/freakbattle/mus_freakbattle_loop-1.ogg" id="7_gfuox"]
 [ext_resource type="Texture2D" uid="uid://suhf6337k676" path="res://assets/sprites/player/player_absorb_walk_d.png" id="7_x3ega"]
 [ext_resource type="Texture2D" uid="uid://cbyvmpq1pfnbd" path="res://assets/sprites/player/player_absorb_walk_l.png" id="8_dcudo"]
 [ext_resource type="Texture2D" uid="uid://cwwc6hjax650b" path="res://assets/sprites/player/player_walk_u.png" id="8_im4kt"]
 [ext_resource type="AudioStream" uid="uid://cw3tqd4c3jixc" path="res://assets/sound-fx/metronomeTick.mp3" id="8_yubpw"]
 [ext_resource type="Texture2D" uid="uid://bmomv8wkdugaj" path="res://assets/sprites/player/player_absorb_walk_r.png" id="9_307no"]
-[ext_resource type="Script" uid="uid://dxgaicuhlouqt" path="res://assets/scripts/rhythm/Song.cs" id="9_gnkye"]
 [ext_resource type="Script" uid="uid://dtmnsqoi88iqw" path="res://assets/scripts/rhythm/MetronomePlayer.cs" id="9_tvib1"]
 [ext_resource type="AudioStream" uid="uid://cyc67punw2gxy" path="res://assets/sound-fx/metronomeTick1.mp3" id="10_hjm76"]
 [ext_resource type="Texture2D" uid="uid://ckdbaxvmk21po" path="res://assets/sprites/player/player_absorb_walk_u.png" id="10_rr87q"]
@@ -845,18 +842,6 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sehyx"]
 size = Vector2(32, 32)
 
-[sub_resource type="Resource" id="Resource_536nl"]
-script = ExtResource("6_8sxkw")
-Description = ""
-loop = ExtResource("7_gfuox")
-Key = 6
-Repetitions = 0
-Beats = 64
-
-[sub_resource type="Resource" id="Resource_0pbrk"]
-script = ExtResource("9_gnkye")
-Phrases = Array[Object]([SubResource("Resource_536nl")])
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_rr87q"]
 atlas = ExtResource("13_ymsut")
 region = Rect2(0, 0, 223, 111)
@@ -953,7 +938,6 @@ shape = SubResource("RectangleShape2D_sehyx")
 [node name="Conductor" type="Node" parent="." node_paths=PackedStringArray("rootChannel")]
 script = ExtResource("4_tsv5s")
 PrintToConsoleEnabled = true
-song = SubResource("Resource_0pbrk")
 rootChannel = NodePath("Channel_1")
 BeatRate = 2
 

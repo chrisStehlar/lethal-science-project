@@ -12,8 +12,8 @@ dest_files=["res://.godot/imported/James Brown - Funky Drummer.mp3-25032c1d55e13
 
 [params]
 
-loop=false
-loop_offset=0.0
+loop=true
+loop_offset=1.0
 bpm=101.0
 beat_count=4
 bar_beats=4

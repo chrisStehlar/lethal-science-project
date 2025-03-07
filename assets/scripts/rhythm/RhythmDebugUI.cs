@@ -43,7 +43,7 @@ public partial class RhythmDebugUI : Control
 	{
 		ColorOnBeat(beatIndex);
 
-		currentPhraseName.Text = conductor.CurrentPhrase.Description;
+		//currentPhraseName.Text = conductor.CurrentPhrase.Description;
 	}
 
 	/// <summary>
