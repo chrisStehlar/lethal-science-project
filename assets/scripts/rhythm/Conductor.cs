@@ -4,6 +4,7 @@ using Godot;
 public partial class Conductor : Node
 {
 	// Variables
+	[Export] public string TrackName { get; private set; }
 
 	private double bpm = 120.0f; // bpm for the Conductor - will adjust to the bpm of the current phrase
 	private int beatsPerMeasure = 4; // same as above
@@ -280,5 +281,11 @@ public partial class Conductor : Node
 		
 		GD.Print("beat: " + beat);
 		GD.Print("whole beats: " + wholeBeatsThisMeasure);
+	}
+
+	public int GetCurrentClipIndex()
+	{
+		try { return playback.GetCurrentClipIndex(); }
+		catch { return 0; }
 	}
 }

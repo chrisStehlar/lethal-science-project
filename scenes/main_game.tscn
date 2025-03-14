@@ -1,4 +1,4 @@
-[gd_scene load_steps=140 format=4 uid="uid://maknoij2sh4o"]
+[gd_scene load_steps=146 format=4 uid="uid://maknoij2sh4o"]
 
 [ext_resource type="Texture2D" uid="uid://cflwrk83ha6y0" path="res://assets/sprites/demo-tileset.png" id="1_0uvb2"]
 [ext_resource type="Script" uid="uid://dyfaukqodcx8m" path="res://assets/scripts/GameManager.cs" id="1_dp0eu"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://crlys0wcn3yqd" path="res://assets/sprites/player/player_absorb_idle_u.png" id="6_3qiid"]
 [ext_resource type="Texture2D" uid="uid://t6djvtdcbcpi" path="res://assets/sprites/player/player_walk_d.png" id="6_tchsi"]
 [ext_resource type="Texture2D" uid="uid://b4elnhu274w0v" path="res://assets/sprites/player/player_walk_s.png" id="7_gb008"]
+[ext_resource type="AudioStream" uid="uid://cpvh32ogubpmg" path="res://assets/songs/freakbattle/mus_freakbattle_loop-1.ogg" id="7_gfuox"]
 [ext_resource type="Texture2D" uid="uid://suhf6337k676" path="res://assets/sprites/player/player_absorb_walk_d.png" id="7_x3ega"]
 [ext_resource type="Texture2D" uid="uid://cbyvmpq1pfnbd" path="res://assets/sprites/player/player_absorb_walk_l.png" id="8_dcudo"]
 [ext_resource type="Texture2D" uid="uid://cwwc6hjax650b" path="res://assets/sprites/player/player_walk_u.png" id="8_im4kt"]
@@ -25,6 +26,10 @@
 [ext_resource type="PackedScene" uid="uid://csiuj07ubewhu" path="res://scenes/projectiles/wave.tscn" id="12_4he15"]
 [ext_resource type="Texture2D" uid="uid://bhd7q7bcx0i6y" path="res://assets/sprites/demo-boss.png" id="13_ymsut"]
 [ext_resource type="PackedScene" uid="uid://posucnb2q2gr" path="res://scenes/pause_menu.tscn" id="19_e7yp7"]
+[ext_resource type="AudioStream" uid="uid://ndmjqqngssox" path="res://assets/songs/freakbattle/mus_freakbattle_initial-1.ogg" id="22_4e2rb"]
+[ext_resource type="AudioStream" uid="uid://cdo8r56uqime7" path="res://assets/songs/freakbattle/mus_freakbattle_initial-2.ogg" id="23_6vdpn"]
+[ext_resource type="AudioStream" uid="uid://ddx33d3eamosv" path="res://assets/songs/freakbattle/mus_freakbattle_loop-2.ogg" id="25_jmxl0"]
+[ext_resource type="AudioStream" uid="uid://dbleypvwrswa0" path="res://assets/songs/freakbattle/mus_freakbattle_loop-3.ogg" id="26_sgdes"]
 [ext_resource type="Texture2D" uid="uid://bxt72i78wnrcx" path="res://assets/sprites/bar-under.png" id="28_rr87q"]
 [ext_resource type="Texture2D" uid="uid://dcymcadtei7iw" path="res://assets/sprites/bar-over.png" id="29_dp0eu"]
 [ext_resource type="Texture2D" uid="uid://dsl1844u80pb5" path="res://assets/sprites/bar-progress.png" id="30_urnot"]
@@ -842,6 +847,29 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sehyx"]
 size = Vector2(32, 32)
 
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_ibep1"]
+clip_count = 5
+clip_0/name = &"Intro 1"
+clip_0/stream = ExtResource("22_4e2rb")
+clip_0/auto_advance = 1
+clip_0/next_clip = 1
+clip_1/name = &"Intro 2"
+clip_1/stream = ExtResource("23_6vdpn")
+clip_1/auto_advance = 1
+clip_1/next_clip = 3
+clip_2/name = &"Loop 1"
+clip_2/stream = ExtResource("7_gfuox")
+clip_2/auto_advance = 1
+clip_2/next_clip = 3
+clip_3/name = &"Loop 2"
+clip_3/stream = ExtResource("25_jmxl0")
+clip_3/auto_advance = 1
+clip_3/next_clip = 4
+clip_4/name = &"Loop 3"
+clip_4/stream = ExtResource("26_sgdes")
+clip_4/auto_advance = 1
+clip_4/next_clip = 2
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_rr87q"]
 atlas = ExtResource("13_ymsut")
 region = Rect2(0, 0, 223, 111)
@@ -937,6 +965,7 @@ shape = SubResource("RectangleShape2D_sehyx")
 
 [node name="Conductor" type="Node" parent="." node_paths=PackedStringArray("rootChannel")]
 script = ExtResource("4_tsv5s")
+TrackName = "freakbattle"
 PrintToConsoleEnabled = true
 rootChannel = NodePath("Channel_1")
 BeatRate = 2
@@ -948,17 +977,18 @@ tickSound = ExtResource("8_yubpw")
 accentedTickSound = ExtResource("10_hjm76")
 
 [node name="Channel_1" type="AudioStreamPlayer" parent="Conductor"]
+stream = SubResource("AudioStreamInteractive_ibep1")
 volume_db = -6.005
 
 [node name="Boss" type="StaticBody2D" parent="." node_paths=PackedStringArray("conductor", "calmMeter")]
 position = Vector2(207, 85)
 script = ExtResource("11_5og6n")
+enemyName = "head"
 projectileScene = ExtResource("12_4he15")
 conductor = NodePath("../Conductor")
 calmMeter = NodePath("../UI Elements/BossCalmness")
 projectileColor = Color(1, 1, 0, 1)
 projectileSpeed = 6
-shootingGuide = "1000"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Boss"]
 sprite_frames = SubResource("SpriteFrames_pjtuq")

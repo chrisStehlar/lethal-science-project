@@ -23,7 +23,7 @@ public partial class PauseManager : Node
     }
     public override void _Process(double delta)
     {
-        GD.Print(isPaused);
+        
     }
     public override void _Input(InputEvent @event)
     {

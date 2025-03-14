@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://del1l7su3lmw3"
+
+[deps]
+
+files=["res://guides/freakbattle/head.100100100101.translation", "res://guides/freakbattle/head.1.translation", "res://guides/freakbattle/head.11111111111111111111111111111111122212221222122212221222121222221010101010101010101010101010101030303030303030303030303030301000.translation", "res://guides/freakbattle/head.2.translation", "res://guides/freakbattle/head.1010101010101010101010101010101030303030303030303030303030301000.translation", "res://guides/freakbattle/head.3.translation", "res://guides/freakbattle/head.100100100101.translation", "res://guides/freakbattle/head.4.translation", "res://guides/freakbattle/head.13331333133313331333133313133333.translation"]
+
+source_file="res://guides/freakbattle/head.csv"
+dest_files=["res://guides/freakbattle/head.100100100101.translation", "res://guides/freakbattle/head.1.translation", "res://guides/freakbattle/head.11111111111111111111111111111111122212221222122212221222121222221010101010101010101010101010101030303030303030303030303030301000.translation", "res://guides/freakbattle/head.2.translation", "res://guides/freakbattle/head.1010101010101010101010101010101030303030303030303030303030301000.translation", "res://guides/freakbattle/head.3.translation", "res://guides/freakbattle/head.100100100101.translation", "res://guides/freakbattle/head.4.translation", "res://guides/freakbattle/head.13331333133313331333133313133333.translation"]
+
+[params]
+
+compress=true
+delimiter=0
