@@ -28,7 +28,10 @@ public partial class Player : CharacterBody2D
 	Timer damageBuffer;
 	double damageTime;
 
-	public bool IsAbsorbing
+	[Export] AudioStreamWav damageSound;
+    AudioStreamPlayer soundPlayer;
+
+    public bool IsAbsorbing
 	{
 		get { return isAbsorbing; }
 	}
@@ -44,6 +47,13 @@ public partial class Player : CharacterBody2D
 		UpdateHealthBar();
 
 		sprites = GetChild<AnimatedSprite2D>(0);
+		sprites.Play();
+		
+		soundPlayer = new AudioStreamPlayer();
+		soundPlayer.Stream = damageSound;
+        soundPlayer.VolumeDb -= 8;
+        AddChild(soundPlayer);
+
 		absorptionTimer = CreateTimer(0.4f, () =>
 		{
 			isAbsorbing = false;
@@ -61,7 +71,7 @@ public partial class Player : CharacterBody2D
 			Modulate = Color.FromHtml("FFFFFF");
 			isDamaged = false;
 		});
-		sprites.Play();
+		
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -97,6 +107,7 @@ public partial class Player : CharacterBody2D
 
 	public void Damage(int projectileDamage)
 	{
+		soundPlayer.Play();
 		currentHealth -= projectileDamage;
 		isDamaged = true;
 		damageBuffer.Start();

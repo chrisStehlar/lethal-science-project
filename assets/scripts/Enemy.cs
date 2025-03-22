@@ -5,39 +5,57 @@ using System.Runtime.CompilerServices;
 
 public partial class Enemy : StaticBody2D
 {
+	// Misc. Aesthetic variables
 	[Export] string enemyName;
-	[Export] PackedScene projectileScene;
 	[Export] Node conductor;
+	AnimatedSprite2D sprite;
 
+	// Audio variables
+	[Export] AudioStreamWav pacifySound;
+	AudioStreamPlayer soundPlayer;
+
+	// Calm meter settings
 	int calmMax = 50;
 	int calmCurrent = 0;
 	[Export] TextureProgressBar calmMeter;
 
+	// Projectile-related variables
+	[Export] PackedScene projectileScene;
 	[Export] Color projectileColor;
 	[Export] int projectileSpeed;
 
+	// Shooting Guide variables
 	string initialShootingGuide;
 	string loopShootingGuide;
-	string currentShootingGuide;
-	int currentGuideIndex = 0;
-
+	string currentShootingGuide;			//Set to initial or loop, and read by the function
+	int currentGuideIndex;
     int guideLength;
 
-	AnimatedSprite2D sprite;
+	
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		LoadShootingGuide();
-		sprite = GetChild<AnimatedSprite2D>(0);
+		currentGuideIndex = 0;
+        calmMax = 50;
+        calmCurrent = 0;
 		if (calmMeter != null)
 		{
 			calmMeter.MaxValue = calmMax;
 			calmMeter.TintOver = projectileColor;
 		}
+        
+		LoadShootingGuide();
+        currentShootingGuide = initialShootingGuide;
+        guideLength = currentShootingGuide.Length;
+
+        sprite = GetChild<AnimatedSprite2D>(0);
 		sprite.AnimationFinished += () => { sprite.Animation = "idle"; };
-		currentShootingGuide = initialShootingGuide;
-		guideLength = currentShootingGuide.Length;
+		
+		soundPlayer = new AudioStreamPlayer();
+		soundPlayer.Stream = pacifySound;
+		soundPlayer.VolumeDb -= 8;
+		AddChild(soundPlayer);
 	}
 
 	/// <summary>
@@ -116,6 +134,7 @@ public partial class Enemy : StaticBody2D
 
     public virtual void Pacify()
 	{
+		soundPlayer.Play();
 		calmCurrent += 5;
 		UpdateCalmness();
 		if (calmCurrent >= calmMax) End();

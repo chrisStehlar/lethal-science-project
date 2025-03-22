@@ -40,10 +40,7 @@ public partial class Projectile : Area2D
     public void OnBodyEntered(Player body)
     {
         if (body.IsAbsorbing)
-        {
-            body.Modulate = Color.FromHtml("00FF00");
             GetParent<Enemy>().Pacify();
-        }
         else if (!body.IsDamaged)
             body.Damage(Damage);
 
