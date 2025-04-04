@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhd7q7bcx0i6y"
-path="res://.godot/imported/demo-boss.png-ca36b25b55991cd8759eeff17d0482b0.ctex"
+uid="uid://blxelu0okc7ru"
+path="res://.godot/imported/wing.png-58f0b09b0145b246f4a64a4dccf70c96.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/demo-boss.png"
-dest_files=["res://.godot/imported/demo-boss.png-ca36b25b55991cd8759eeff17d0482b0.ctex"]
+source_file="res://assets/sprites/chelsea/wing.png"
+dest_files=["res://.godot/imported/wing.png-58f0b09b0145b246f4a64a4dccf70c96.ctex"]
 
 [params]
 

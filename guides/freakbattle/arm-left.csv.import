@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://del1l7su3lmw3"
+
+[deps]
+
+files=["res://export/guides/freakbattle/head.4.translation", "res://guides/freakbattle/arm-left.100000000000000000000000100000000000100000000000.translation", "res://guides/freakbattle/arm-left.initial.translation", "res://guides/freakbattle/arm-left.6.translation", "res://guides/freakbattle/arm-left.1000000000000000.translation", "res://guides/freakbattle/arm-left.initial.translation", "res://export/guides/freakbattle/head.4.translation", "res://guides/freakbattle/arm-left.10000000.translation", "res://guides/freakbattle/arm-left.initial.translation", "res://guides/freakbattle/arm-left.6.translation", "res://guides/freakbattle/arm-left.1000000000000000.translation", "res://guides/freakbattle/arm-left.initial.translation", "res://export/guides/freakbattle/head.4.translation", "res://guides/freakbattle/arm-left.10000000.translation"]
+
+source_file="res://guides/freakbattle/arm-left.csv"
+dest_files=["res://export/guides/freakbattle/head.4.translation", "res://guides/freakbattle/arm-left.100000000000000000000000100000000000100000000000.translation", "res://guides/freakbattle/arm-left.initial.translation", "res://guides/freakbattle/arm-left.6.translation", "res://guides/freakbattle/arm-left.1000000000000000.translation", "res://guides/freakbattle/arm-left.initial.translation", "res://export/guides/freakbattle/head.4.translation", "res://guides/freakbattle/arm-left.10000000.translation", "res://guides/freakbattle/arm-left.initial.translation", "res://guides/freakbattle/arm-left.6.translation", "res://guides/freakbattle/arm-left.1000000000000000.translation", "res://guides/freakbattle/arm-left.initial.translation", "res://export/guides/freakbattle/head.4.translation", "res://guides/freakbattle/arm-left.10000000.translation"]
+
+[params]
+
+compress=true
+delimiter=0

@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 public enum Difficulty
@@ -22,7 +23,7 @@ public partial class GameManager : Node2D
 
     bool deathCalled = false;
     
-    public Difficulty Difficulty { get; set; }
+    [Export] public Difficulty Difficulty { get; set; } = Difficulty.Hard;
 
     public override void _EnterTree()
     {
@@ -43,6 +44,7 @@ public partial class GameManager : Node2D
         }
         if (enemy.CalmCurrent>=enemy.CalmMax)
         {
+            conductor.Call("stop");
             EmitSignal(SignalName.GameWin);
         }
     }
@@ -54,5 +56,18 @@ public partial class GameManager : Node2D
         GetParent().AddChild(gameNode);
 
         QueueFree(); // remove current instance
+    }
+
+    public Timer CreateTimer(Node parent, float waitTime, Action timeoutFunction)
+    {
+        Timer timer = new()
+        {
+            ProcessCallback = Timer.TimerProcessCallback.Physics,
+            WaitTime = waitTime,
+            OneShot = true
+        };
+        timer.Timeout += timeoutFunction;
+        parent.AddChild(timer);
+        return timer;
     }
 }

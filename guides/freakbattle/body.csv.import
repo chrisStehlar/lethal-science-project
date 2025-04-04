@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://qjg2aebwix6w"
+
+[deps]
+
+files=["res://guides/freakbattle/body.8.translation", "res://guides/freakbattle/body.000000000000000000000000.translation", "res://guides/freakbattle/body.initial.translation", "res://guides/freakbattle/body.1.translation", "res://guides/freakbattle/body.1000000000000000.translation", "res://guides/freakbattle/body.initial.translation", "res://guides/freakbattle/body.28.translation", "res://guides/freakbattle/body.0000.translation", "res://guides/freakbattle/body.initial.translation", "res://guides/freakbattle/body.8.translation", "res://guides/freakbattle/body.0000000010000000.translation"]
+
+source_file="res://guides/freakbattle/body.csv"
+dest_files=["res://guides/freakbattle/body.8.translation", "res://guides/freakbattle/body.000000000000000000000000.translation", "res://guides/freakbattle/body.initial.translation", "res://guides/freakbattle/body.1.translation", "res://guides/freakbattle/body.1000000000000000.translation", "res://guides/freakbattle/body.initial.translation", "res://guides/freakbattle/body.28.translation", "res://guides/freakbattle/body.0000.translation", "res://guides/freakbattle/body.initial.translation", "res://guides/freakbattle/body.8.translation", "res://guides/freakbattle/body.0000000010000000.translation"]
+
+[params]
+
+compress=true
+delimiter=0

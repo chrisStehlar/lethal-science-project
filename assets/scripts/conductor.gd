@@ -2,7 +2,7 @@ extends Node
 
 # Variables
 @export var TrackName: String;
-@export var ClickTrackEnabled: bool = true
+@export var ClickTrackEnabled: bool;
 @export var PrintToConsoleEnabled: bool = false # for debugging
 
 var IsPlaying:

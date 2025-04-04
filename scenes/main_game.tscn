@@ -1,4 +1,4 @@
-[gd_scene load_steps=152 format=4 uid="uid://maknoij2sh4o"]
+[gd_scene load_steps=183 format=4 uid="uid://maknoij2sh4o"]
 
 [ext_resource type="Texture2D" uid="uid://cflwrk83ha6y0" path="res://assets/sprites/demo-tileset.png" id="1_0uvb2"]
 [ext_resource type="Script" uid="uid://dyfaukqodcx8m" path="res://assets/scripts/GameManager.cs" id="1_dp0eu"]
@@ -24,15 +24,22 @@
 [ext_resource type="Script" uid="uid://frek6135h3wv" path="res://assets/scripts/Enemy.cs" id="11_5og6n"]
 [ext_resource type="PackedScene" uid="uid://csiuj07ubewhu" path="res://scenes/projectiles/wave.tscn" id="12_4he15"]
 [ext_resource type="Texture2D" uid="uid://bmablyowdggw7" path="res://assets/sprites/aria/death.png" id="13_jmxl0"]
-[ext_resource type="Texture2D" uid="uid://bhd7q7bcx0i6y" path="res://assets/sprites/demo-boss.png" id="13_ymsut"]
 [ext_resource type="Script" uid="uid://tqrq8y57q2oe" path="res://assets/scripts/conductor.gd" id="18_6vdpn"]
 [ext_resource type="Script" uid="uid://cn0uglp3akrpe" path="res://addons/rhythm_notifier/rhythm_notifier.gd" id="19_jmxl0"]
 [ext_resource type="AudioStream" uid="uid://d3cahd4s71clp" path="res://assets/songs/freakbattle/initial.ogg" id="23_dp0eu"]
 [ext_resource type="AudioStream" uid="uid://1cco2lfcdfoq" path="res://assets/songs/freakbattle/loop.ogg" id="24_urnot"]
 [ext_resource type="AudioStream" uid="uid://xf55kq5jq0l4" path="res://assets/sounds/absorb.wav" id="28_4e2rb"]
 [ext_resource type="Texture2D" uid="uid://bxt72i78wnrcx" path="res://assets/sprites/bar-under.png" id="28_rr87q"]
+[ext_resource type="Texture2D" uid="uid://cy1x2ht8yffrf" path="res://assets/sprites/chelsea/head.png" id="29_1vioj"]
 [ext_resource type="Texture2D" uid="uid://dcymcadtei7iw" path="res://assets/sprites/bar-over.png" id="29_dp0eu"]
 [ext_resource type="Texture2D" uid="uid://dsl1844u80pb5" path="res://assets/sprites/bar-progress.png" id="30_urnot"]
+[ext_resource type="Script" uid="uid://dvgr5efydusq7" path="res://assets/scripts/Limb.cs" id="31_6vdpn"]
+[ext_resource type="Texture2D" uid="uid://153oyhi617gv" path="res://assets/sprites/chelsea/arm.png" id="32_jmxl0"]
+[ext_resource type="PackedScene" uid="uid://jdvg21k84bli" path="res://scenes/projectiles/dart.tscn" id="33_g2o8j"]
+[ext_resource type="Texture2D" uid="uid://bkw1fudtm4hpg" path="res://assets/sprites/chelsea/body.png" id="34_oojmo"]
+[ext_resource type="PackedScene" uid="uid://c4eqsti8iq7j4" path="res://scenes/projectiles/diamond.tscn" id="35_5noht"]
+[ext_resource type="Texture2D" uid="uid://dnorgr7xaaqs8" path="res://assets/sprites/chelsea/horn.png" id="36_4v0b0"]
+[ext_resource type="Texture2D" uid="uid://blxelu0okc7ru" path="res://assets/sprites/chelsea/wing.png" id="37_mkn3m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l2epv"]
 texture = ExtResource("1_0uvb2")
@@ -916,48 +923,36 @@ clip_1/name = &"Loop"
 clip_1/stream = ExtResource("24_urnot")
 clip_1/auto_advance = 0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rr87q"]
-atlas = ExtResource("13_ymsut")
-region = Rect2(0, 0, 223, 111)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_x3a3x"]
-atlas = ExtResource("13_ymsut")
-region = Rect2(1338, 0, 223, 111)
+atlas = ExtResource("29_1vioj")
+region = Rect2(768, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sgocm"]
-atlas = ExtResource("13_ymsut")
-region = Rect2(1115, 0, 223, 111)
+atlas = ExtResource("29_1vioj")
+region = Rect2(640, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pk1le"]
-atlas = ExtResource("13_ymsut")
-region = Rect2(892, 0, 223, 111)
+atlas = ExtResource("29_1vioj")
+region = Rect2(512, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1al3e"]
-atlas = ExtResource("13_ymsut")
-region = Rect2(669, 0, 223, 111)
+atlas = ExtResource("29_1vioj")
+region = Rect2(384, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sh8gf"]
-atlas = ExtResource("13_ymsut")
-region = Rect2(446, 0, 223, 111)
+atlas = ExtResource("29_1vioj")
+region = Rect2(256, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4h0lf"]
-atlas = ExtResource("13_ymsut")
-region = Rect2(223, 0, 223, 111)
+atlas = ExtResource("29_1vioj")
+region = Rect2(128, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3ikos"]
-atlas = ExtResource("13_ymsut")
-region = Rect2(0, 0, 223, 111)
+atlas = ExtResource("29_1vioj")
+region = Rect2(0, 0, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pjtuq"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rr87q")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_x3a3x")
@@ -974,18 +969,218 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_sh8gf")
 }, {
-"duration": 1.0,
+"duration": 3.0,
 "texture": SubResource("AtlasTexture_4h0lf")
+}],
+"loop": false,
+"name": &"damage",
+"speed": 15.0
 }, {
+"frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3ikos")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b02dr"]
+atlas = ExtResource("32_jmxl0")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qr7ox"]
+atlas = ExtResource("32_jmxl0")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3fkkw"]
+atlas = ExtResource("32_jmxl0")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8g0k1"]
+atlas = ExtResource("32_jmxl0")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o2grk"]
+atlas = ExtResource("32_jmxl0")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jmxl0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b02dr")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qr7ox")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_3fkkw")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_8g0k1")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_o2grk")
 }],
 "loop": false,
 "name": &"swing",
 "speed": 10.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_5r8m8"]
+atlas = ExtResource("34_oojmo")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oavnn"]
+atlas = ExtResource("34_oojmo")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ywdx8"]
+atlas = ExtResource("34_oojmo")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3etow"]
+atlas = ExtResource("34_oojmo")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8tsbv"]
+atlas = ExtResource("34_oojmo")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_veqri"]
+atlas = ExtResource("34_oojmo")
+region = Rect2(1024, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qrlfd"]
+atlas = ExtResource("34_oojmo")
+region = Rect2(1152, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_htswi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5r8m8")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_oavnn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ywdx8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3etow")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8tsbv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_veqri")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qrlfd")
+}],
+"loop": false,
+"name": &"swing",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3mkrk"]
+atlas = ExtResource("36_4v0b0")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2gn3"]
+atlas = ExtResource("36_4v0b0")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3lgv"]
+atlas = ExtResource("36_4v0b0")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5ehsd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3mkrk")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v2gn3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r3lgv")
+}],
+"loop": false,
+"name": &"swing",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0l6bj"]
+atlas = ExtResource("37_mkn3m")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uft02"]
+atlas = ExtResource("37_mkn3m")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2muw"]
+atlas = ExtResource("37_mkn3m")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ynq6o"]
+atlas = ExtResource("37_mkn3m")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xisu6"]
+atlas = ExtResource("37_mkn3m")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qnxwh"]
+atlas = ExtResource("37_mkn3m")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dsflj"]
+animations = [{
+"frames": [{
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_0l6bj")
+}, {
+"duration": 1.2,
+"texture": SubResource("AtlasTexture_uft02")
+}, {
+"duration": 1.3,
+"texture": SubResource("AtlasTexture_u2muw")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_ynq6o")
+}, {
+"duration": 1.4,
+"texture": SubResource("AtlasTexture_xisu6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qnxwh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
 [node name="GameManager" type="Node2D" node_paths=PackedStringArray("player", "enemy", "conductor")]
+position = Vector2(1, 0)
 script = ExtResource("1_dp0eu")
 player = NodePath("Player")
 enemy = NodePath("Boss")
@@ -1034,21 +1229,115 @@ tickSound = ExtResource("8_yubpw")
 stream = SubResource("AudioStreamInteractive_ibep1")
 
 [node name="Boss" type="StaticBody2D" parent="." node_paths=PackedStringArray("conductor", "calmMeter")]
-position = Vector2(207, 85)
+y_sort_enabled = true
+position = Vector2(207, 68)
 script = ExtResource("11_5og6n")
 enemyName = "head"
 conductor = NodePath("../Conductor")
+baseCalmMax = 50
 pacifySound = ExtResource("28_4e2rb")
 calmMeter = NodePath("../UI Elements/BossCalmness")
+projectileColor = Color(1, 1, 0, 1)
+
+[node name="Head" type="AnimatedSprite2D" parent="Boss"]
+z_index = 2
+sprite_frames = SubResource("SpriteFrames_pjtuq")
+animation = &"idle"
+
+[node name="LeftArm" type="StaticBody2D" parent="Boss" node_paths=PackedStringArray("conductor")]
+z_index = 1
+script = ExtResource("31_6vdpn")
+enemyName = "arm-left"
+conductor = NodePath("../../Conductor")
+pacifySound = ExtResource("28_4e2rb")
 projectileScene = ExtResource("12_4he15")
 projectileColor = Color(1, 1, 0, 1)
 projectileSpeed = 4
+projectileRange = 0.7
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Boss"]
-sprite_frames = SubResource("SpriteFrames_pjtuq")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Boss/LeftArm"]
+sprite_frames = SubResource("SpriteFrames_jmxl0")
+animation = &"idle"
+
+[node name="RightArm" type="StaticBody2D" parent="Boss" node_paths=PackedStringArray("conductor")]
+position = Vector2(0, 1)
+script = ExtResource("31_6vdpn")
+enemyName = "arm-right"
+conductor = NodePath("../../Conductor")
+pacifySound = ExtResource("28_4e2rb")
+projectileScene = ExtResource("12_4he15")
+projectileColor = Color(1, 1, 0, 1)
+projectileSpeed = 4
+projectileRange = 0.7
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Boss/RightArm"]
+sprite_frames = SubResource("SpriteFrames_jmxl0")
+animation = &"idle"
+flip_h = true
+
+[node name="Body" type="StaticBody2D" parent="Boss" node_paths=PackedStringArray("conductor")]
+z_index = 1
+script = ExtResource("31_6vdpn")
+enemyName = "body"
+conductor = NodePath("../../Conductor")
+pacifySound = ExtResource("28_4e2rb")
+projectileScene = ExtResource("33_g2o8j")
+projectileColor = Color(0, 1, 0, 1)
+projectileSpeed = 4
+projectileRange = 0.3
+difficulty = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Boss/Body"]
+sprite_frames = SubResource("SpriteFrames_htswi")
+animation = &"idle"
+flip_h = true
+
+[node name="LeftHorn" type="StaticBody2D" parent="Boss" node_paths=PackedStringArray("conductor")]
+z_index = 1
+script = ExtResource("31_6vdpn")
+enemyName = "horn-left"
+conductor = NodePath("../../Conductor")
+pacifySound = ExtResource("28_4e2rb")
+projectileScene = ExtResource("35_5noht")
+projectileColor = Color(1, 1, 0, 1)
+projectileSpeed = 4
+projectileRange = 1.0
+difficulty = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Boss/LeftHorn"]
+z_index = 3
+sprite_frames = SubResource("SpriteFrames_5ehsd")
 animation = &"swing"
-frame = 6
-frame_progress = 1.0
+
+[node name="RightHorn" type="StaticBody2D" parent="Boss" node_paths=PackedStringArray("conductor")]
+z_index = 1
+position = Vector2(0, 1)
+script = ExtResource("31_6vdpn")
+enemyName = "horn-right"
+conductor = NodePath("../../Conductor")
+pacifySound = ExtResource("28_4e2rb")
+projectileScene = ExtResource("35_5noht")
+projectileColor = Color(1, 1, 0, 1)
+projectileSpeed = 4
+projectileRange = 1.0
+difficulty = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Boss/RightHorn"]
+z_index = 3
+sprite_frames = SubResource("SpriteFrames_5ehsd")
+animation = &"swing"
+flip_h = true
+
+[node name="LeftWing" type="AnimatedSprite2D" parent="Boss"]
+sprite_frames = SubResource("SpriteFrames_dsflj")
+autoplay = "default"
+frame_progress = 0.00369668
+
+[node name="RightWing" type="AnimatedSprite2D" parent="Boss"]
+sprite_frames = SubResource("SpriteFrames_dsflj")
+autoplay = "default"
+frame_progress = 0.00369668
+flip_h = true
 
 [node name="UI Elements" type="Node" parent="."]
 
@@ -1078,4 +1367,8 @@ texture_progress = ExtResource("30_urnot")
 tint_progress = Color(0.488179, 1, 0.456277, 1)
 
 [connection signal="tree_exited" from="." to="." method="OnDelete"]
-[connection signal="OnBeat" from="Conductor" to="Boss" method="Beat"]
+[connection signal="OnBeat" from="Conductor" to="Boss/LeftArm" method="Beat"]
+[connection signal="OnBeat" from="Conductor" to="Boss/RightArm" method="Beat"]
+[connection signal="OnBeat" from="Conductor" to="Boss/Body" method="Beat"]
+[connection signal="OnBeat" from="Conductor" to="Boss/LeftHorn" method="Beat"]
+[connection signal="OnBeat" from="Conductor" to="Boss/RightHorn" method="Beat"]

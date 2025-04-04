@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://bheyfyfciv0w5"
+
+[deps]
+
+files=["res://guides/freakbattle/horn-left.72.translation", "res://guides/freakbattle/horn-left.1000.translation", "res://guides/freakbattle/horn-left.initial.translation", "res://guides/freakbattle/horn-left.16.translation", "res://guides/freakbattle/horn-left.10.translation", "res://guides/freakbattle/horn-left.initial.translation", "res://guides/freakbattle/horn-left.24.translation", "res://guides/freakbattle/horn-left.1000.translation", "res://guides/freakbattle/horn-left.initial.translation", "res://guides/freakbattle/horn-left.16.translation", "res://guides/freakbattle/horn-left.10.translation"]
+
+source_file="res://guides/freakbattle/horn-left.csv"
+dest_files=["res://guides/freakbattle/horn-left.72.translation", "res://guides/freakbattle/horn-left.1000.translation", "res://guides/freakbattle/horn-left.initial.translation", "res://guides/freakbattle/horn-left.16.translation", "res://guides/freakbattle/horn-left.10.translation", "res://guides/freakbattle/horn-left.initial.translation", "res://guides/freakbattle/horn-left.24.translation", "res://guides/freakbattle/horn-left.1000.translation", "res://guides/freakbattle/horn-left.initial.translation", "res://guides/freakbattle/horn-left.16.translation", "res://guides/freakbattle/horn-left.10.translation"]
+
+[params]
+
+compress=true
+delimiter=0

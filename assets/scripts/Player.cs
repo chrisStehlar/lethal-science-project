@@ -71,19 +71,19 @@ public partial class Player : CharacterBody2D
         soundPlayer.VolumeDb -= 4;
         AddChild(soundPlayer);
 
-		absorptionTimer = CreateTimer(0.4f, () =>
+		absorptionTimer = GameManager.Instance.CreateTimer(this, 0.4f, () =>
 		{
 			isAbsorbing = false;
 			Modulate = Color.FromHtml("999999");
 			isOnCooldown = true;
 			cooldownTimer.Start();
 		});
-		cooldownTimer = CreateTimer(1, () =>
+		cooldownTimer = GameManager.Instance.CreateTimer(this, 1, () =>
 		{
 			Modulate = Color.FromHtml("FFFFFF");
 			isOnCooldown = false;
 		});
-		damageBuffer = CreateTimer(1.5f, () =>
+		damageBuffer = GameManager.Instance.CreateTimer(this, 1.5f, () =>
 		{
 			Modulate = Color.FromHtml("FFFFFF");
 			isDamaged = false;
@@ -133,7 +133,7 @@ public partial class Player : CharacterBody2D
 
 	public void Death(Action timeoutFunction)
 	{
-		Timer deathTimer = CreateTimer((float)deathSound.GetLength() - 2, timeoutFunction);
+		Timer deathTimer = GameManager.Instance.CreateTimer(this, (float)deathSound.GetLength() - 2, timeoutFunction);
 		soundPlayer.Stream = deathSound;
 		soundPlayer.VolumeDb = 0;
 		soundPlayer.Play();
@@ -201,19 +201,4 @@ public partial class Player : CharacterBody2D
 	}
 
     #endregion
-
-    private Timer CreateTimer(float waitTime, Action timeoutFunction)
-	{
-		Timer timer = new()
-		{
-			ProcessCallback = Timer.TimerProcessCallback.Physics,
-			WaitTime = waitTime,
-			OneShot = true
-		};
-		timer.Timeout += timeoutFunction;
-		AddChild(timer);
-		return timer;
-	}
-
-	
 }

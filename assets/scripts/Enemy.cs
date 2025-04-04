@@ -8,6 +8,7 @@ public partial class Enemy : StaticBody2D
 	// Misc. Aesthetic variables
 	[Export] string enemyName;
 	[Export] Node conductor;
+	[Export] int baseCalmMax;
 	AnimatedSprite2D sprite;
 
 	// Audio variables
@@ -15,14 +16,16 @@ public partial class Enemy : StaticBody2D
 	AudioStreamPlayer soundPlayer;
 
 	// Calm meter settings
-	int calmMax = 50;
-	int calmCurrent = 0;
+	int calmMax;
+	int calmCurrent;
 	[Export] TextureProgressBar calmMeter;
 
 	// Projectile-related variables
 	[Export] PackedScene projectileScene;
 	[Export] Color projectileColor;
 	[Export] int projectileSpeed;
+	[Export] float projectileRange;				//In radians
+	[Export] Difficulty difficulty;
 
 	// Shooting Guide variables
 	string initialShootingGuide;
@@ -30,8 +33,6 @@ public partial class Enemy : StaticBody2D
 	string currentShootingGuide;			//Set to initial or loop, and read by the function
 	int currentGuideIndex;
     int guideLength;
-
-	
 
 	public int CalmCurrent
 	{
@@ -46,14 +47,13 @@ public partial class Enemy : StaticBody2D
 	public override void _Ready()
 	{
 		currentGuideIndex = 0;
-        calmMax = 50;
-        calmCurrent = 0;
 		if (calmMeter != null)
 		{
+            calmMax = baseCalmMax + baseCalmMax / 2 * (int)GameManager.Instance.Difficulty;
+            calmCurrent = 0;
 			calmMeter.MaxValue = calmMax;
 			calmMeter.TintOver = projectileColor;
-		}
-        
+        }
 		LoadShootingGuide();
         currentShootingGuide = initialShootingGuide;
         guideLength = currentShootingGuide.Length;
@@ -72,6 +72,9 @@ public partial class Enemy : StaticBody2D
 	/// </summary>
 	public void Beat(int beatIndex)
 	{
+		if (initialShootingGuide == "-1" && loopShootingGuide == "-1") return;
+		if (GameManager.Instance.Difficulty < difficulty) return;
+
 		if (currentGuideIndex >= guideLength) ResetGuide(beatIndex);
 		// Contingencies
 		if (!(bool)conductor.Get("IsPlaying")) return;
@@ -101,8 +104,9 @@ public partial class Enemy : StaticBody2D
 	{
 		Projectile projectile = projectileScene.Instantiate() as Projectile;
 		projectile.GlowColor = projectileColor;
-		projectile.Speed = projectileSpeed + (int)GameManager.Instance.Difficulty * 2;
-		projectile.Orientation = GD.Randf() * 1.4f - 0.7f;
+		projectile.Speed = projectileSpeed + (int)GameManager.Instance.Difficulty * 2 - (int)difficulty * 2;
+		projectile.Orientation = GD.Randf() * (projectileRange * 2) - projectileRange;
+		projectile.Position += new Vector2(0, 10);
 		AddChild(projectile);
 		sprite.Animation = "swing";
 		sprite.Play();
@@ -117,26 +121,38 @@ public partial class Enemy : StaticBody2D
     private void LoadShootingGuide()
     {
         string filePath = "res://guides/" + (string)conductor.Get("TrackName") + "/" + enemyName + ".csv";
+		GD.Print(filePath);
 
-        using var file = FileAccess.Open(filePath, FileAccess.ModeFlags.Read);
-        string fileContent = file.GetAsText();
-        string[] fileContentArray = fileContent.Split(',');
-
-		//File content is read in groups of 3:
-		//1 - whether initial or loop, represented as i
-		//2 - repetition count, represented as i + 1
-		//3 - guide numbers, represented as i + 2
-		for (int i = 0; i < fileContentArray.Length; i += 3)
+		try
 		{
-			int repetitionCount = int.Parse(fileContentArray[i + 1]);
-			for (int j = 0; j < repetitionCount; j++)
-			{
-				if (fileContentArray[i] == "initial")
-					initialShootingGuide += fileContentArray[i + 2];
-				else
-					loopShootingGuide += fileContentArray[i + 2];
+            using var file = FileAccess.Open(filePath, FileAccess.ModeFlags.Read);
+            string fileContent = file.GetAsText();
+            string[] fileContentArray = fileContent.Split(',');
 
+            //File content is read in groups of 3:
+            //1 - whether initial or loop, represented as i
+            //2 - repetition count, represented as i + 1
+            //3 - guide numbers, represented as i + 2
+            for (int i = 0; i < fileContentArray.Length; i += 3)
+            {
+                int repetitionCount = int.Parse(fileContentArray[i + 1]);
+				
+                for (int j = 0; j < repetitionCount; j++)
+                {
+                    if (fileContentArray[i] == "initial")
+                        initialShootingGuide += fileContentArray[i + 2];
+                    else
+                        loopShootingGuide += fileContentArray[i + 2];
+
+                }
             }
+            
+        }
+		catch (Exception e){
+			GD.Print(e.Message);
+			initialShootingGuide = "-1";
+			loopShootingGuide = "-1";
+			return; 
 		}
     }
     #endregion
@@ -144,6 +160,7 @@ public partial class Enemy : StaticBody2D
     public virtual void Pacify()
 	{
 		soundPlayer.Play();
+		sprite.Play("damage");
 		calmCurrent += 5;
 		UpdateCalmness();
 		if (calmCurrent >= calmMax) End();

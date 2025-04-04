@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://cuafbn5rq2mfl"
+
+[deps]
+
+files=["res://guides/freakbattle/arm-right.4.translation", "res://guides/freakbattle/arm-right.000000000000100000000000000000000000000000100000.translation", "res://guides/freakbattle/arm-right.initial.translation", "res://guides/freakbattle/arm-right.6.translation", "res://guides/freakbattle/arm-right.0000100010001000.translation", "res://guides/freakbattle/arm-right.initial.translation", "res://guides/freakbattle/arm-right.2.translation", "res://guides/freakbattle/arm-right.00001000.translation", "res://guides/freakbattle/arm-right.initial.translation", "res://guides/freakbattle/arm-right.4.translation", "res://guides/freakbattle/arm-right.1000.translation", "res://guides/freakbattle/arm-right.initial.translation", "res://guides/freakbattle/arm-right.6.translation", "res://guides/freakbattle/arm-right.0000200020002000.translation", "res://guides/freakbattle/arm-right.initial.translation", "res://guides/freakbattle/arm-right.2.translation", "res://guides/freakbattle/arm-right.00002000.translation", "res://guides/freakbattle/arm-right.initial.translation", "res://guides/freakbattle/arm-right.4.translation", "res://guides/freakbattle/arm-right.2000.translation"]
+
+source_file="res://guides/freakbattle/arm-right.csv"
+dest_files=["res://guides/freakbattle/arm-right.4.translation", "res://guides/freakbattle/arm-right.000000000000100000000000000000000000000000100000.translation", "res://guides/freakbattle/arm-right.initial.translation", "res://guides/freakbattle/arm-right.6.translation", "res://guides/freakbattle/arm-right.0000100010001000.translation", "res://guides/freakbattle/arm-right.initial.translation", "res://guides/freakbattle/arm-right.2.translation", "res://guides/freakbattle/arm-right.00001000.translation", "res://guides/freakbattle/arm-right.initial.translation", "res://guides/freakbattle/arm-right.4.translation", "res://guides/freakbattle/arm-right.1000.translation", "res://guides/freakbattle/arm-right.initial.translation", "res://guides/freakbattle/arm-right.6.translation", "res://guides/freakbattle/arm-right.0000200020002000.translation", "res://guides/freakbattle/arm-right.initial.translation", "res://guides/freakbattle/arm-right.2.translation", "res://guides/freakbattle/arm-right.00002000.translation", "res://guides/freakbattle/arm-right.initial.translation", "res://guides/freakbattle/arm-right.4.translation", "res://guides/freakbattle/arm-right.2000.translation"]
+
+[params]
+
+compress=true
+delimiter=0
